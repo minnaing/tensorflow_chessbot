@@ -19,3 +19,8 @@ praw.ini
 *.txt
 
 !readme_images/*
+
+# Ignore all hidden files
+.*
+!/.gitignore
+
