@@ -1,8 +1,12 @@
-TensorFlow Chessbot - /u/ChessFenBot [◕ _ ◕]<sup>\* *I make FENs*</sup>
+TensorFlow Chessbot - [/u/ChessFenBot](https://www.reddit.com/user/ChessFenBot) [◕ _ ◕]<sup>\* *I make FENs*</sup>
 ---
 
+*CLI and Bot code lives on the [chessfenbot branch](https://github.com/Elucidation/tensorflow_chessbot/tree/chessfenbot)*
+
+[Live demo here](http://elucidation.github.io/ChessboardFenTensorflowJs/) using [TensorflowJs](https://js.tensorflow.org/)
+
 **TL;DR**: 
-> Turn http://i.imgur.com/HnWYt8A.png → [1nkr4/1p3q1p/pP4pn/P1r5/3N1p2/2b2B1P/5PPB/2RQ1RK1](http://www.lichess.org/analysis/1nkr4/1p3q1p/pP4pn/P1r5/3N1p2/2b2B1P/5PPB/2RQ1RK1_w)
+> Turn http://i.imgur.com/HnWYt8A.png → [1nkr4/1p3q1p/pP4pn/P1r5/3N1p2/2b2B1P/5PPB/2RQ1RK1](https://lichess.org/analysis/1nkr4/1p3q1p/pP4pn/P1r5/3N1p2/2b2B1P/5PPB/2RQ1RK1_w)
 
 ![Prediction](readme_images/prediction.png)
 
@@ -24,11 +28,9 @@ On a linux machine which has Tensorflow and SciPy installed
 
         sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 
-Download and unzip this directory somewhere : [tensorflow_chessbot](https://github.com/Elucidation/tensorflow_chessbot/archive/master.zip)
+Download the chessfenbot branch somewhere : [tensorflow_chessbot/chessfenbot](https://github.com/Elucidation/tensorflow_chessbot/archive/chessfenbot.zip) 
 
-Then, download and unzip this saved model to the same directory  : [tensorflow_chessbot_model_v01.zip](https://drive.google.com/open?id=0BwW6qsUNa47xeUNvQ2M0a053Y0U)
-
-The directory structure should look like `<SOMEWHERE>\tensorflow_chessbot-master\saved_models`
+*Alternatively clone the [chessfenbot branch](https://github.com/Elucidation/tensorflow_chessbot/tree/chessfenbot)*
 
 Now, to run pass the following arguments to `tensorflow_chessbot.py`
 
@@ -64,11 +66,13 @@ Similarly, a URL can be tested by calling with a URL:
 
     $ ./tensorflow_chessbot.py --url http://imgur.com/u4zF5Hj.png
 
-### Reddit Bot
+### ~~Reddit Bot~~ *Deprecated*
 
-[/u/ChessFenBot](https://www.reddit.com/user/ChessFenBot) will automatically reply to [reddit /r/chess](https://www.reddit.com/r/) new topic image posts that contain detectable online chessboard screenshots. A screenshot either ends in `.png`, `.jpg`, `.gif`, or is an `imgur` link. 
+*Code lives on the [chessfenbot branch](https://github.com/Elucidation/tensorflow_chessbot/tree/chessfenbot)*
 
-It replies with a [lichess](http://www.lichess.org) analysis link for that layout and a predicted [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
+[/u/ChessFenBot](https://www.reddit.com/user/ChessFenBot) used to (~2015-2016) automatically reply to [reddit /r/chess](https://www.reddit.com/r/) new topic image posts that contain detectable online chessboard screenshots. A screenshot either ends in `.png`, `.jpg`, `.gif`, or is an `imgur` link. 
+
+It replies with a [lichess](https://lichess.org) analysis link for that layout and a predicted [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation).
 
 ```py
 predictor = ChessboardPredictor()
@@ -95,24 +99,24 @@ ChessFenBot automatically replied to [this reddit post](https://www.reddit.com/r
 > 
 > FEN: [1nkr4/1p3q1p/pP4pn/P1r5/3N1p2/2b2B1P/5PPB/2RQ1RK1](http://www.fen-to-image.com/image/30/1nkr1111/1p111q1p/pP1111pn/P1r11111/111N1p11/11b11B1P/11111PPB/11RQ1RK1.png)
 > 
-> Here is a link to a [Lichess Analysis](http://www.lichess.org/analysis/1nkr4/1p3q1p/pP4pn/P1r5/3N1p2/2b2B1P/5PPB/2RQ1RK1_w) - White to play
+> Here is a link to a [Lichess Analysis](https://lichess.org/analysis/1nkr4/1p3q1p/pP4pn/P1r5/3N1p2/2b2B1P/5PPB/2RQ1RK1_w) - White to play
 > 
 > ---
 > 
-> <sup>Yes I am a machine learning bot | [`How I work`](https://github.com/Elucidation/tensorflow_chessbot 'Must go deeper') | Reply with a corrected FEN or [Editor link)](http://www.lichess.org/editor/r1b1r1k1/5pp1/p1pR1nNp/8/2B5/2q5/P1P1Q1PP/5R1K) to add to my next training dataset</sup>
+> <sup>Yes I am a machine learning bot | [`How I work`](https://github.com/Elucidation/tensorflow_chessbot 'Must go deeper') | Reply with a corrected FEN or [Editor link)](https://lichess.org/editor/r1b1r1k1/5pp1/p1pR1nNp/8/2B5/2q5/P1P1Q1PP/5R1K) to add to my next training dataset</sup>
 
 ## Workflow
 
 There are three ipython notebooks which show the workflow from turning a screenshot of a chessboard into a set of 32x32 grayscale tiles, to generating those tiles for training and testing, and then the actual training and learning of the neural network from those trials using [TensorFlow](http://www.tensorflow.org).
 
-1. [tensorflow_chessbot.ipynb](tensorflow_compvision.ipynb) - Computer Vision
+1. [tensorflow_compvision.ipynb](tensorflow_compvision.ipynb) - Computer Vision
 1. [tensorflow_generate_training_data.ipynb](tensorflow_generate_training_data.ipynb) - Generating a dataset from set of screenshots of chessboards in known configurations
 1. [tensorflow_learn.ipynb](tensorflow_learn.ipynb) - **TensorFlow Neural Network Training & Prediction** Basic Regression classifier, works for more common lichess.org and chess.com screenshots
 1. [tensorflow_learn_cnn.ipynb](tensorflow_learn_cnn.ipynb) - **TensorFlow Convolutional Neural Network Training & Prediction** tested with ~73% success rate on 71 chess subreddit posts
 
 ---
 
-#### [tensorflow_chessbot.ipynb](tensorflow_chessbot.ipynb) - 1. Computer Vision
+#### [tensorflow_compvision.ipynb](tensorflow_compvision.ipynb) - 1. Computer Vision
 
 Here is a screenshot with the detected lines of the chessboard overlaid, showing where we'll cut the image into tiles.
 
